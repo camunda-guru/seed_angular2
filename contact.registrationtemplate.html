@@ -1,0 +1,57 @@
+
+
+<form [formGroup]="group"(ngSubmit)="onSubmit()" #regForm="ngForm">
+
+    <div class="form-group">
+        <div>
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" required
+               [(ngModel)]="firstName"
+               name="firstName" id="firstName" #firstName="ngModel" >
+
+            <ul *ngIf="!firstName.valid">
+                <li *ngIf="firstName.hasError('required')">FirstName is required</li>
+                <li *ngIf="firstName.hasError('minlength')">FirstName should have minimum 4 chars</li>
+            </ul>
+
+        </div>
+
+        <div>
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" required
+               [(ngModel)]="lastName"
+               name="lastName" id="lastName" #lastName="ngModel" >
+            <ul *ngIf="!lastName.valid">
+                <li *ngIf="lastName.hasError('required')">lastName is required</li>
+                <li *ngIf="lastName.hasError('minlength')">lastName should have minimum 4 chars</li>
+            </ul>
+
+        </div>
+        <div>
+        <label for="email">Email</label>
+        <input type="email" class="form-control" required
+               [(ngModel)]="email"
+               name="email" id="email" #email="ngModel" >
+            <ul *ngIf="!email.valid">
+                <li *ngIf="email.hasError('required')">email is required</li>
+                <li *ngIf="email.hasError('Emailvalidate')">Email Format Error</li>
+            </ul>
+
+        </div>
+        <div>
+        <label for="password">Password</label>
+        <input type="password" class="form-control" required
+               [(ngModel)]="password"
+               name="password" id="password" #password="ngModel" >
+            <ul *ngIf="!password.valid">
+                <li *ngIf="password.hasError('required')">password is required</li>
+                <li *ngIf="password.hasError('minlength')">password should have minimum 4 chars</li>
+                <li *ngIf="password.hasError('maxlength')">password should have maximum 8 chars</li>
+            </ul>
+
+        </div>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-default" [disabled]="!regForm.form.valid">Save</button>
+
+</form>
